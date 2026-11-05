@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lá Từ Vựng – Học tiếng Anh</title>
+<style>
+:root{--bg:#eef3f0;--ink:#16212b;--mute:#64727d;--card:#fff;--line:#d5dfd9;--g:#2f8f5b;--gd:#1f6b42;--bark:#5b4636;--amber:#d9822b;--bad:#c2452f;--ok:#2f8f5b}
+@media(prefers-color-scheme:dark){:root{--bg:#10171c;--ink:#e6eee9;--mute:#8d9ba5;--card:#18222a;--line:#2a3842;--g:#52b883;--gd:#7ad3a3;--bark:#9a7b63;--amber:#f0a255;--bad:#ee7a63;--ok:#52b883}}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh}
+.serif{font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--g);outline-offset:2px}
+.btn{background:var(--g);color:#fff;border:0;border-radius:8px;padding:.65rem 1.1rem;font-weight:600}
+.btn:hover{background:var(--gd)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--line)}
+.btn.warn{background:var(--amber);color:#1b1206}
+.btn.bad{background:var(--bad)}
+.wrap{max-width:760px;margin:0 auto;padding:0 1rem 4rem}
+header{display:flex;align-items:center;gap:.75rem;padding:.9rem 1rem;max-width:760px;margin:0 auto}
+header h1{font-size:1.15rem;margin:0;flex:1}
+#leaf{font-weight:700;color:var(--g)}
+nav{display:flex;gap:.25rem;border-bottom:1px solid var(--line);margin-bottom:1.25rem;overflow-x:auto}
+nav button{background:none;border:0;border-bottom:3px solid transparent;padding:.7rem .9rem;color:var(--mute);white-space:nowrap}
+nav button.on{color:var(--ink);border-color:var(--g);font-weight:600}
+.badge{background:var(--amber);color:#1b1206;border-radius:99px;font-size:.75rem;padding:.05rem .5rem;margin-left:.3rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+.muted{color:var(--mute);font-size:.9rem}
+.center{display:grid;place-items:center;min-height:100vh;padding:1rem;text-align:center}
+.center .card{max-width:420px}
+.center h1{font-size:2rem;margin:.2rem 0}
+input[type=text],input[type=search]{font:inherit;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:.6rem .8rem;width:100%}
+.row{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.row>input{flex:1;min-width:140px}
+/* tree */
+#tree{width:100%;max-height:62vh;display:block}
+.lf{opacity:.95}
+.pop{animation:pop 1.6s ease-out}
+@keyframes pop{0%{opacity:0;filter:drop-shadow(0 0 10px #ffd34d)}40%{opacity:1;filter:drop-shadow(0 0 10px #ffd34d)}100%{filter:none}}
+@media(prefers-reduced-motion:reduce){.pop{animation:none}}
+.stat{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;text-align:center}
+.stat b{display:block;font-size:1.7rem}
+/* study */
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.8rem 1rem;margin-bottom:.5rem}
+.opt:hover:not(:disabled){border-color:var(--g)}
+.opt.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,var(--card))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 18%,var(--card))}
+.flash{min-height:230px;display:grid;place-items:center;text-align:center;cursor:pointer;font-size:2rem;padding:1.5rem;position:relative;user-select:none}
+.flash small{display:block;font-size:1rem;color:var(--mute);margin-top:.6rem}
+.say{position:absolute;top:.6rem;right:.6rem;background:none;border:1px solid var(--line);border-radius:8px;padding:.2rem .5rem}
+.prog{height:6px;background:var(--line);border-radius:9px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--g)}
+.big{font-size:1.9rem;text-align:center;margin:1rem 0}
+table{width:100%;border-collapse:collapse}
+td,th{padding:.5rem .4rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.st{font-size:.78rem;border-radius:6px;padding:.1rem .45rem;border:1px solid var(--line)}
+.st.mastered{color:var(--ok);border-color:var(--ok)}.st.relearn{color:var(--amber);border-color:var(--amber)}
+#toast{position:fixed;left:50%;bottom:1.5rem;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:.7rem 1.1rem;border-radius:10px;z-index:9}
+</style>
+</head>
+<body>
+
+<div id="login" class="center" hidden>
+  <div class="card">
+    <svg viewBox="0 0 120 70" width="120" aria-hidden="true"><g stroke="var(--bark)" stroke-width="4" stroke-linecap="round" fill="none"><path d="M60 68V36M60 48L40 30M60 40L82 20M40 30L30 14M82 20L96 8"/></g></svg>
+    <h1 class="serif">Lá Từ Vựng</h1>
+    <p class="muted">Học từ vựng bằng thẻ ghi nhớ. Mỗi từ bạn thuộc sẽ mọc thêm một chiếc lá trên cây của riêng bạn.</p>
+    <button class="btn" id="gbtn">Đăng nhập bằng Google</button>
+    <p class="muted" id="modeNote"></p>
+  </div>
+</div>
+
+<div id="app" hidden>
+  <header>
+    <h1 class="serif">Lá Từ Vựng</h1>
+    <span id="leaf"></span>
+    <span class="muted" id="who"></span>
+    <button class="btn ghost" id="out">Đăng xuất</button>
+  </header>
+  <div class="wrap">
+    <nav>
+      <button data-t="tree">Cây của tôi</button>
+      <button data-t="study">Học &amp; kiểm tra</button>
+      <button data-t="relearn">Học lại<span class="badge" id="rb" hidden></span></button>
+      <button data-t="words">Từ vựng</button>
+    </nav>
+    <main id="main"></main>
+  </div>
+</div>
+<div id="toast" hidden></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+/* ===== CẤU HÌNH: dán firebaseConfig của bạn vào đây (xem hướng dẫn). Để null = chế độ thử, lưu trong trình duyệt ===== */
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDOoot4iNqjyqYLfLe2PrvmRo8-dX6awHY",
+  authDomain: "tienganh-b26f8.firebaseapp.com",
+  projectId: "tienganh-b26f8",
+  storageBucket: "tienganh-b26f8.firebasestorage.app",
+  messagingSenderId: "1052702315067",
+  appId: "1:1052702315067:web:3975a6f47621afa151421e",
+  measurementId: "G-XQF1NB4BR9"
+};
+;
+/* Số lần trả lời đúng liên tiếp để một từ được tính là "đã thuộc" (mọc 1 lá) */
+const MASTER = 2;
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const rng = s => { s = (s % 2147483646) + 1; const r = () => (s = s * 16807 % 2147483647) / 2147483647; r(); r(); return r; };
+const S = { user: null, words: [], tab: 'tree', sess: null, newLeaf: false };
+const FB = !!(FIREBASE_CONFIG && window.firebase);
+let auth, db;
+const mastered = () => S.words.filter(w => w.st === 'mastered').length;
+const relearn = () => S.words.filter(w => w.st === 'relearn');
+
+/* ---------- Lưu trữ ---------- */
+async function load() {
+  if (FB) { const d = await db.doc('users/' + S.user.uid).get(); S.words = d.exists ? (d.data().words || []) : []; }
+  else { try { S.words = JSON.parse(localStorage.getItem('words_' + S.user.uid) || '[]'); } catch (e) { S.words = []; } }
+}
+let timer;
+function save() {
+  clearTimeout(timer);
+  timer = setTimeout(() => {
+    if (FB) db.doc('users/' + S.user.uid).set({ words: S.words, updated: Date.now() }).catch(() => toast('Không lưu được lên đám mây, hãy kiểm tra mạng.'));
+    else { try { localStorage.setItem('words_' + S.user.uid, JSON.stringify(S.words)); } catch (e) {} }
+  }, 400);
+}
+function toast(t) { const e = $('#toast'); e.textContent = t; e.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => e.hidden = true, 2600); }
+
+/* ---------- Đăng nhập ---------- */
+if (FB) {
+  firebase.initializeApp(FIREBASE_CONFIG); auth = firebase.auth(); db = firebase.firestore();
+  auth.onAuthStateChanged(u => u ? start({ uid: u.uid, name: u.displayName || u.email }) : showLogin());
+} else {
+  $('#modeNote').textContent = 'Chưa cấu hình Firebase: ứng dụng đang ở chế độ thử, dữ liệu chỉ lưu trên trình duyệt này.';
+  showLogin();
+}
+function showLogin() { $('#app').hidden = true; $('#login').hidden = false; }
+$('#gbtn').onclick = () => FB ? auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(e => toast('Đăng nhập thất bại: ' + e.code)) : start({ uid: 'local', name: 'Chế độ thử' });
+$('#out').onclick = () => { if (FB) auth.signOut(); else showLogin(); };
+async function start(u) {
+  S.user = u; S.tab = 'tree'; S.sess = null;
+  await load();
+  $('#login').hidden = true; $('#app').hidden = false; $('#who').textContent = u.name; render();
+}
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => { S.tab = b.dataset.t; S.sess = null; render(); });
+
+function render() {
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.t === S.tab));
+  hdr();
+  const m = $('#main');
+  if (S.sess && S.tab === 'study') return renderSess();
+  ({ tree: vTree, study: vStudy, relearn: vRelearn, words: vWords })[S.tab](m);
+}
+function hdr() {
+  $('#leaf').textContent = '🍃 ' + mastered();
+  const n = relearn().length; $('#rb').hidden = !n; $('#rb').textContent = n;
+}
+
+/* ---------- Cây ---------- */
+const T = (() => {
+  const r = rng(42), segs = [], anch = [];
+  (function g(x, y, a, l, w, d) {
+    const x2 = x + Math.sin(a) * l, y2 = y - Math.cos(a) * l;
+    segs.push([x, y, x2, y2, w]);
+    if (d >= 3) { anch.push([x2, y2], [(x + x2) / 2, (y + y2) / 2]); }
+    if (d >= 7) return;
+    const k = d < 2 ? 2 : (r() < .35 ? 3 : 2);
+    for (let i = 0; i < k; i++) {
+      const da = k === 2 ? (i ? 1 : -1) * (.3 + r() * .3) : (i - 1) * (.5 + r() * .2);
+      g(x2, y2, a + da, l * (.72 + r() * .1), w * .68, d + 1);
+    }
+  })(200, 400, 0, 80, 14, 0);
+  return { segs, anch };
+})();
+function vTree(m) {
+  const n = mastered(), total = S.words.length;
+  let lv = '';
+  for (let i = 0; i < n; i++) {
+    const r = rng(i * 97 + 13), a = T.anch[r() * T.anch.length | 0];
+    const x = a[0] + (r() - .5) * 30, y = a[1] + (r() - .5) * 26, rot = r() * 360 | 0, sc = .8 + r() * .7;
+    lv += `<path class="lf${S.newLeaf && i === n - 1 ? ' pop' : ''}" d="M0 0C5-7 13-4 16 0C13 4 5 7 0 0Z" fill="hsl(${95 + r() * 55 | 0} 52% ${34 + r() * 20 | 0}%)" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${rot}) scale(${sc.toFixed(2)})"/>`;
+  }
+  S.newLeaf = false;
+  const br = T.segs.map(s => `<line x1="${s[0].toFixed(1)}" y1="${s[1].toFixed(1)}" x2="${s[2].toFixed(1)}" y2="${s[3].toFixed(1)}" stroke-width="${s[4].toFixed(1)}"/>`).join('');
+  m.innerHTML = `<div class="card"><svg id="tree" viewBox="0 20 400 400" role="img" aria-label="Cây có ${n} lá">
+    <ellipse cx="200" cy="404" rx="150" ry="9" fill="var(--line)"/>
+    <g stroke="var(--bark)" stroke-linecap="round">${br}</g>${lv}</svg>
+    ${n ? '' : '<p class="muted" style="text-align:center">Cây đang trơ cành. Thuộc một từ để mọc chiếc lá đầu tiên.</p>'}
+    <div class="stat"><div><b>${n}</b><span class="muted">lá (từ đã thuộc)</span></div><div><b>${total - n}</b><span class="muted">từ còn lại</span></div><div><b>${relearn().length}</b><span class="muted">cần học lại</span></div></div></div>
+    ${total ? '' : '<div class="card">Bạn chưa có từ nào. Vào tab <b>Từ vựng</b> để nhập file Excel.</div>'}`;
+}
+
+/* ---------- Chọn chế độ học ---------- */
+function vStudy(m) {
+  const left = S.words.filter(w => w.st !== 'mastered').length;
+  m.innerHTML = `<div class="card"><h2 class="serif" style="margin-top:0">Bắt đầu học</h2>
+    <p class="muted">Mỗi lượt tối đa 20 từ. Từ trả lời sai sẽ tự chuyển sang danh sách Học lại. Trả lời đúng ${MASTER} lần liên tiếp thì từ được tính là đã thuộc.</p>
+    <p><label><input type="radio" name="src" value="left" checked> Từ chưa thuộc (${left})</label><br>
+    <label><input type="radio" name="src" value="all"> Tất cả từ (${S.words.length})</label></p>
+    <div class="row"><button class="btn" onclick="start2('flash')">Thẻ ghi nhớ</button><button class="btn" onclick="start2('quiz')">Trắc nghiệm</button><button class="btn" onclick="start2('type')">Gõ từ</button></div></div>`;
+}
+function start2(mode) { const src = (document.querySelector('input[name=src]:checked') || {}).value || 'left'; begin(mode, src); }
+function begin(mode, src) {
+  let pool = src === 'relearn' ? relearn() : src === 'all' ? S.words : S.words.filter(w => w.st !== 'mastered');
+  if (!pool.length) return toast('Không có từ nào để học.');
+  if (mode === 'quiz' && S.words.length < 2) mode = 'flash';
+  S.tab = 'study'; S.sess = { mode, queue: shuffle(pool).slice(0, 20), i: 0, ok: 0, bad: 0, flip: false, req: new Set(), opts: null, done: false };
+  render();
+}
+function speak(t, e) { if (e) e.stopPropagation(); try { const u = new SpeechSynthesisUtterance(t); u.lang = 'en-US'; speechSynthesis.cancel(); speechSynthesis.speak(u); } catch (x) {} }
+
+function answer(w, ok) {
+  const was = w.st === 'mastered';
+  if (ok) { w.sk = (w.sk || 0) + 1; w.st = w.sk >= MASTER ? 'mastered' : (w.st === 'relearn' ? 'relearn' : 'learning'); }
+  else { w.sk = 0; w.wr = (w.wr || 0) + 1; w.st = 'relearn'; }
+  if (w.st === 'mastered' && !was) { S.newLeaf = true; toast('🍃 Một chiếc lá mới vừa mọc!'); }
+  save(); hdr();
+}
+function grade(ok) {
+  const s = S.sess, w = s.queue[s.i]; if (s.answered) return; s.answered = true;
+  answer(w, ok); ok ? s.ok++ : s.bad++;
+  if (!ok && !s.req.has(w.id)) { s.req.add(w.id); s.queue.push(w); }
+}
+function next() { const s = S.sess; s.i++; s.answered = false; s.flip = false; s.opts = null; renderSess(); }
+function endSess() { S.sess = null; S.tab = 'tree'; render(); }
+
+function renderSess() {
+  const s = S.sess, m = $('#main');
+  if (s.i >= s.queue.length) {
+    m.innerHTML = `<div class="card" style="text-align:center"><h2 class="serif">Hoàn thành lượt học</h2><p>Đúng ${s.ok} &nbsp;·&nbsp; Sai ${s.bad}</p>${s.bad ? '<p class="muted">Các từ sai đã được đưa vào danh sách Học lại.</p>' : ''}<button class="btn" onclick="endSess()">Xem cây của tôi</button></div>`;
+    return;
+  }
+  const w = s.queue[s.i], head = `<div class="prog"><i style="width:${s.i / s.queue.length * 100}%"></i></div><p class="muted">${s.i + 1} / ${s.queue.length}</p>`;
+  if (s.mode === 'flash') {
+    m.innerHTML = head + `<div class="card flash serif" onclick="S.sess.flip=!S.sess.flip;renderSess()"><button class="say" aria-label="Phát âm" onclick="speak('${esc(w.en).replace(/'/g, '')}',event)">🔊</button>
+      <div>${s.flip ? esc(w.vi) : esc(w.en)}${s.flip && w.ex ? `<small>${esc(w.ex)}</small>` : ''}<small>${s.flip ? '' : 'Chạm để lật thẻ'}</small></div></div>
+      <div class="row" style="justify-content:center"><button class="btn bad" onclick="grade(false);next()">Chưa thuộc</button><button class="btn" onclick="grade(true);next()">Đã thuộc</button></div>`;
+  } else if (s.mode === 'quiz') {
+    if (!s.opts) s.opts = shuffle([w, ...shuffle(S.words.filter(x => x.id !== w.id && x.vi !== w.vi)).slice(0, 3)]);
+    m.innerHTML = head + `<div class="big serif">${esc(w.en)} <button class="say" style="position:static" onclick="speak('${esc(w.en).replace(/'/g, '')}',event)">🔊</button></div>` +
+      s.opts.map((o, i) => `<button class="opt${s.answered ? (o.id === w.id ? ' right' : (s.pick === i ? ' wrong' : '')) : ''}" ${s.answered ? 'disabled' : ''} onclick="S.sess.pick=${i};grade(S.sess.opts[${i}].id===S.sess.queue[S.sess.i].id);renderSess()">${esc(o.vi)}</button>`).join('') +
+      (s.answered ? '<button class="btn" onclick="next()">Tiếp tục</button>' : '');
+  } else {
+    m.innerHTML = head + `<div class="big serif">${esc(w.vi)}</div><p class="muted" style="text-align:center">Gõ từ tiếng Anh tương ứng</p>
+      <div class="row"><input type="text" id="ans" autocomplete="off" autocapitalize="off" spellcheck="false" ${s.answered ? 'disabled' : ''} value="${esc(s.typed || '')}"><button class="btn" id="chk">${s.answered ? 'Tiếp tục' : 'Kiểm tra'}</button></div>
+      ${s.answered ? `<p class="big" style="color:var(--${s.last ? 'ok' : 'bad'})">${s.last ? 'Chính xác' : 'Đáp án: ' + esc(w.en)}</p>` : ''}`;
+    const inp = $('#ans'); if (!s.answered) inp.focus();
+    const go = () => { if (s.answered) { s.typed = ''; return next(); } s.typed = inp.value; s.last = inp.value.trim().toLowerCase() === w.en.trim().toLowerCase(); grade(s.last); renderSess(); };
+    $('#chk').onclick = go; inp.onkeydown = e => { if (e.key === 'Enter') go(); };
+    if (s.answered) $('#chk').focus();
+  }
+}
+document.addEventListener('keydown', e => {
+  const s = S.sess; if (!s || s.mode !== 'flash' || s.i >= s.queue.length) return;
+  if (e.key === ' ') { e.preventDefault(); s.flip = !s.flip; renderSess(); }
+  if (e.key === 'ArrowRight') { grade(true); next(); }
+  if (e.key === 'ArrowLeft') { grade(false); next(); }
+});
+
+/* ---------- Học lại ---------- */
+function vRelearn(m) {
+  const l = relearn();
+  m.innerHTML = l.length ? `<div class="card"><div class="row" style="justify-content:space-between"><b>${l.length} từ cần học lại</b><span class="row"><button class="btn warn" onclick="begin('flash','relearn')">Thẻ ghi nhớ</button><button class="btn ghost" onclick="begin('quiz','relearn')">Trắc nghiệm</button><button class="btn ghost" onclick="begin('type','relearn')">Gõ từ</button></span></div></div>
+    <div class="card"><table>${l.map(w => `<tr><td class="serif">${esc(w.en)}</td><td>${esc(w.vi)}</td><td class="muted">sai ${w.wr || 0} lần</td></tr>`).join('')}</table></div>`
+    : '<div class="card" style="text-align:center">Danh sách trống. Những từ bạn trả lời sai sẽ xuất hiện ở đây.</div>';
+}
+
+/* ---------- Từ vựng + Excel ---------- */
+function vWords(m) {
+  m.innerHTML = `<div class="card"><h2 class="serif" style="margin-top:0">Nhập từ vựng</h2>
+    <p class="muted">File Excel (.xlsx, .xls, .csv): cột A là tiếng Anh, cột B là nghĩa tiếng Việt, cột C (không bắt buộc) là câu ví dụ. Từ trùng sẽ được cập nhật nghĩa, không bị nhân đôi.</p>
+    <div class="row"><input type="file" id="file" accept=".xlsx,.xls,.csv" hidden><button class="btn" onclick="$('#file').click()">Chọn file Excel</button><button class="btn ghost" onclick="tpl()">Tải file mẫu</button></div>
+    <div class="row" style="margin-top:.8rem"><input type="text" id="ne" placeholder="Tiếng Anh"><input type="text" id="nv" placeholder="Tiếng Việt"><button class="btn ghost" onclick="addOne()">Thêm từ</button></div></div>
+    <div class="card"><input type="search" id="q" placeholder="Tìm từ…" style="margin-bottom:.6rem"><div id="list"></div></div>`;
+  $('#file').onchange = e => { const f = e.target.files[0]; if (!f) return; f.arrayBuffer().then(importXlsx).catch(() => toast('Không đọc được file này.')); e.target.value = ''; };
+  $('#q').oninput = list; list();
+}
+function list() {
+  const q = ($('#q').value || '').toLowerCase(), l = S.words.filter(w => (w.en + ' ' + w.vi).toLowerCase().includes(q)).slice(0, 200);
+  $('#list').innerHTML = S.words.length ? `<p class="muted">${S.words.length} từ${S.words.length > 200 ? ' (hiển thị tối đa 200)' : ''}</p><table>${l.map(w => `<tr><td class="serif">${esc(w.en)}</td><td>${esc(w.vi)}</td><td><span class="st ${w.st}">${{ new: 'mới', learning: 'đang học', relearn: 'học lại', mastered: 'đã thuộc' }[w.st]}</span></td><td><button class="btn ghost" aria-label="Xóa" onclick="del('${w.id}')">✕</button></td></tr>`).join('')}</table>` : '<p class="muted">Chưa có từ nào.</p>';
+}
+const uid = () => Math.random().toString(36).slice(2, 10);
+function upsert(en, vi, ex) {
+  const k = en.toLowerCase(), w = S.words.find(x => x.en.toLowerCase() === k);
+  if (w) { w.vi = vi; if (ex) w.ex = ex; return 0; }
+  S.words.push({ id: uid(), en, vi, ex: ex || '', st: 'new', sk: 0, wr: 0 }); return 1;
+}
+function importXlsx(buf) {
+  const wb = XLSX.read(buf, { type: 'array' }), rows = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { header: 1, blank: true });
+  let add = 0, upd = 0;
+  rows.forEach((r, i) => {
+    const en = String(r[0] ?? '').trim(), vi = String(r[1] ?? '').trim(), ex = String(r[2] ?? '').trim();
+    if (!en || !vi) return;
+    if (i === 0 && /^(english|tiếng anh|tieng anh|word|term|từ vựng|từ)$/i.test(en)) return;
+    upsert(en, vi, ex) ? add++ : upd++;
+  });
+  save(); render(); toast(`Đã thêm ${add} từ mới, cập nhật ${upd} từ.`);
+}
+function addOne() {
+  const en = $('#ne').value.trim(), vi = $('#nv').value.trim();
+  if (!en || !vi) return toast('Hãy nhập cả tiếng Anh và tiếng Việt.');
+  upsert(en, vi); save(); render();
+}
+function del(id) { S.words = S.words.filter(w => w.id !== id); save(); render(); }
+function tpl() {
+  const ws = XLSX.utils.aoa_to_sheet([['English', 'Tiếng Việt', 'Ví dụ (không bắt buộc)'], ['apple', 'quả táo', 'I eat an apple every day.'], ['journey', 'chuyến đi', 'Life is a journey.']]);
+  const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, 'Từ vựng'); XLSX.writeFile(wb, 'mau_tu_vung.xlsx');
+}
+</script>
+</body>
+</html>
